@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using Sava3._0.Infrastructure;
 using Sava3._0.Infrastructure.Commands;
+using Sava3._0.View;
 
 namespace Sava3._0.ViewModel
 {
@@ -54,11 +55,12 @@ namespace Sava3._0.ViewModel
             {
                 using (var context = new DBContext())
                 {
-                    var query = from e in context.Employees
-                                join pe in Project.ProjectEmployees on e.Id equals pe.EmployeeId
-                                select e;
+                    var query = from pe in Project.ProjectEmployees
+                                where pe.Employee.Position.Salary == pe.Employee.Position.Salary
+                                select pe.Employee;
 
-                    return new ObservableCollection<Employee>(query);
+                    var gg = new ObservableCollection<Employee>(query);
+                    return gg;
                 }
             }
         }
@@ -87,7 +89,7 @@ namespace Sava3._0.ViewModel
                         res += projLen * daySalary;
                     }
 
-                    MessageBox.Show(string.Format("Итоговая стоимость проекта: {0}", res));
+                    MessageBox.Show(string.Format("Итоговая стоимость проекта: {0}BYN", res));
                 });
             }
         }
@@ -98,7 +100,36 @@ namespace Sava3._0.ViewModel
             {
                 return new Command((obj) =>
                 {
+                    SelectEmplyeeWindow wnd = new SelectEmplyeeWindow();
+                    if (wnd.ShowDialog().Value)
+                    {
+                        using (var context = new DBContext())
+                        {
+                            ProjectEmployee pe = new ProjectEmployee() { Employee = wnd.SelectedEmployee };
+                            context.Entry(pe).State = System.Data.Entity.EntityState.Added;
+                            context.Entry(pe.Employee).State = System.Data.Entity.EntityState.Modified;
 
+                            Project.ProjectEmployees.Add(pe);
+
+                            OnProperyChanged(nameof(Project));
+                            OnProperyChanged(nameof(ProjectEmployees));
+                        }
+                    }
+                });
+            }
+        }
+
+        public ICommand RemoveEmployeeCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    var pe = Project.ProjectEmployees.FirstOrDefault(p => p.Employee.Id == (obj as Employee).Id);
+                    Project.ProjectEmployees.Remove(pe);
+
+                    OnProperyChanged(nameof(Project));
+                    OnProperyChanged(nameof(ProjectEmployees));
                 });
             }
         }
@@ -109,6 +140,12 @@ namespace Sava3._0.ViewModel
         {
             Project = new Project();
             SaveProjectCommand = new Command(CreateProject, CanSaveProject);
+        }
+
+        public ProjectWindowViewModel(Project project)
+        {
+            Project = project;
+            SaveProjectCommand = new Command(UpdateProject, CanSaveProject);
         }
 
         private void CreateProject(object param)

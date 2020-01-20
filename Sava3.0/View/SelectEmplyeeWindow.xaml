@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Sava3._0.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="SelectEmplyeeWindow" Height="450" Width="840">
     <Window.DataContext>
@@ -20,11 +21,15 @@
             <TextBox Text="{Binding SalaryMore, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="15" Width="70" Padding="5" />
             <Label Content="Зп мельше" Margin="3"  />
             <TextBox Text="{Binding SalaryLess, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="15" Width="70" Padding="5" />
-            <!--<Label Content="Должность:" Margin="3"  />
-            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Width="130" ItemsSource="{Binding Positions}" DisplayMemberPath="Name" SelectedValue="{Binding Platform}" />-->
-            
+
         </StackPanel>
-        <ListView ItemsSource="{Binding Employees}" Grid.Row="1">
+        <ListView ItemsSource="{Binding Employees}" Grid.Row="1" x:Name="listView">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction CommandParameter="{Binding ElementName=form}"
+                                   Command="{Binding SelectEmployeeCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Имя" Width="200" DisplayMemberBinding="{Binding Name}" />

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Sava3._0.Infrastructure.Commands;
+using Sava3._0.View;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.Include;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Sava3._0.ViewModel
 {
@@ -74,6 +73,26 @@ namespace Sava3._0.ViewModel
 
                     return new ObservableCollection<SelectedEmployee>(set);
                 }
+            }
+        }
+
+        public ICommand SelectEmployeeCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    SelectEmplyeeWindow wnd = obj as SelectEmplyeeWindow;
+                    ListView lstView = wnd.listView;
+                    SelectedEmployee selectedEmployee = lstView.SelectedItem as SelectedEmployee;
+
+                    using (var context = new DBContext())
+                    {
+                        wnd.SelectedEmployee = context.Employees.AsNoTracking().FirstOrDefault(e => e.Id == selectedEmployee.Id);
+                    }
+
+                    wnd.DialogResult = wnd.SelectedEmployee != null;
+                });
             }
         }
     }

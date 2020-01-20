@@ -19,6 +19,8 @@ namespace Sava3._0.View
     /// </summary>
     public partial class SelectEmplyeeWindow : Window
     {
+        public Employee SelectedEmployee { get; set; }
+
         public SelectEmplyeeWindow()
         {
             InitializeComponent();

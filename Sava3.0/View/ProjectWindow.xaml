@@ -4,9 +4,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sava3._0.View"
+        xmlns:viewModel="clr-namespace:Sava3._0.ViewModel"
         mc:Ignorable="d"
         Title="ProjectWindow" Height="650" Width="800">
+    <Window.DataContext>
+        <viewModel:ProjectWindowViewModel />
+    </Window.DataContext>
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
