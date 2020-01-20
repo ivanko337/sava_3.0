@@ -89,6 +89,9 @@ namespace Sava3._0.ViewModel
                         res += projLen * daySalary;
                     }
 
+                    var factor = Convert.ToDecimal(Math.Pow(10, 2));
+                    res = Math.Ceiling(res * factor) / factor;
+
                     MessageBox.Show(string.Format("Итоговая стоимость проекта: {0}BYN", res));
                 });
             }
@@ -125,6 +128,11 @@ namespace Sava3._0.ViewModel
             {
                 return new Command((obj) =>
                 {
+                    if (obj == null)
+                    {
+                        return;
+                    }
+
                     var pe = Project.ProjectEmployees.FirstOrDefault(p => p.Employee.Id == (obj as Employee).Id);
                     Project.ProjectEmployees.Remove(pe);
 
@@ -135,6 +143,32 @@ namespace Sava3._0.ViewModel
         }
 
         public ICommand SaveProjectCommand { get; set; }
+
+        public ICommand CreatePlatformCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    PlatformWindow wnd = new PlatformWindow();
+                    if (wnd.ShowDialog().Value)
+                    {
+                        OnProperyChanged(nameof(Platforms));
+                    }
+                });
+            }
+        }
+
+        public ICommand CreateCustomerCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    
+                });
+            }
+        }
 
         public ProjectWindowViewModel()
         {

@@ -108,6 +108,7 @@
     <Compile Include="Subject.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CustomerWindowViewModel.cs" />
     <Compile Include="ViewModel\EmployeeWindowViewModel.cs" />
     <Compile Include="ViewModel\PlatformWindowViewModel.cs" />
     <Compile Include="ViewModel\PositionWindowViewModel.cs" />
@@ -116,6 +117,9 @@
     <Compile Include="ViewModel\SelectEmployeeWindowViewModel.cs" />
     <Compile Include="ViewModel\SubjectWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\CustomerWindow.xaml.cs">
+      <DependentUpon>CustomerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EmployeeWindow.xaml.cs">
       <DependentUpon>EmployeeWindow.xaml</DependentUpon>
     </Compile>
@@ -199,6 +203,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\CustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
