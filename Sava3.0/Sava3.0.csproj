@@ -112,6 +112,7 @@
     <Compile Include="ViewModel\EmployeeWindowViewModel.cs" />
     <Compile Include="ViewModel\PlatformWindowViewModel.cs" />
     <Compile Include="ViewModel\PositionWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProjectListWindowViewModel.cs" />
     <Compile Include="ViewModel\ProjectTypeWindowViewModel.cs" />
     <Compile Include="ViewModel\ProjectWindowViewModel.cs" />
     <Compile Include="ViewModel\SelectEmployeeWindowViewModel.cs" />
@@ -128,6 +129,9 @@
     </Compile>
     <Compile Include="View\PositionWindow.xaml.cs">
       <DependentUpon>PositionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectsListWindow.xaml.cs">
+      <DependentUpon>ProjectsListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProjectTypeWindow.xaml.cs">
       <DependentUpon>ProjectTypeWindow.xaml</DependentUpon>
@@ -216,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PositionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProjectsListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

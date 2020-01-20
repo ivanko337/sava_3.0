@@ -209,11 +209,6 @@ namespace Sava3._0.ViewModel
                 context.Entry(Project.Platform).State = System.Data.Entity.EntityState.Modified;
                 context.Entry(Project.ProjectType).State = System.Data.Entity.EntityState.Modified;
 
-                //foreach (var item in Project.ProjectEmployees)
-                //{
-                //    context.Entry(item.Employee).State = System.Data.Entity.EntityState.Modified;
-                //}
-
                 DBService.AddNewEntity(param as Window, Project, context, context.Projects);
             }
         }
