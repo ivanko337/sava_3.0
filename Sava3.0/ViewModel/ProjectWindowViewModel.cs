@@ -106,17 +106,19 @@ namespace Sava3._0.ViewModel
                     SelectEmplyeeWindow wnd = new SelectEmplyeeWindow();
                     if (wnd.ShowDialog().Value)
                     {
-                        using (var context = new DBContext())
-                        {
-                            ProjectEmployee pe = new ProjectEmployee() { Employee = wnd.SelectedEmployee };
-                            context.Entry(pe).State = System.Data.Entity.EntityState.Added;
-                            context.Entry(pe.Employee).State = System.Data.Entity.EntityState.Modified;
+                        ProjectEmployee pe = new ProjectEmployee();
 
-                            Project.ProjectEmployees.Add(pe);
+                        //context.Entry(pe.Employee).State = System.Data.Entity.EntityState.Modified;
+                        //context.Employees.Attach(wnd.SelectedEmployee);
 
-                            OnProperyChanged(nameof(Project));
-                            OnProperyChanged(nameof(ProjectEmployees));
-                        }
+                        pe.Employee = wnd.SelectedEmployee;
+
+                        Project.ProjectEmployees.Add(pe);
+                        //context.Entry(pe).State = System.Data.Entity.EntityState.Added;
+
+
+                        OnProperyChanged(nameof(Project));
+                        OnProperyChanged(nameof(ProjectEmployees));
                     }
                 });
             }
@@ -209,7 +211,15 @@ namespace Sava3._0.ViewModel
                 context.Entry(Project.Platform).State = System.Data.Entity.EntityState.Modified;
                 context.Entry(Project.ProjectType).State = System.Data.Entity.EntityState.Modified;
 
+                foreach (var item in Project.ProjectEmployees)
+                {
+                    context.Entry(item).State = System.Data.Entity.EntityState.Added;
+                    context.Entry(item.Employee).State = System.Data.Entity.EntityState.Modified;
+                }
+
                 DBService.AddNewEntity(param as Window, Project, context, context.Projects);
+
+                //context.Employees.Remove(context.Employees.OrderByDescending(e => e.Id).FirstOrDefault());
             }
         }
 
