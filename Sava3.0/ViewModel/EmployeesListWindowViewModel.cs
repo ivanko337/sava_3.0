@@ -32,24 +32,11 @@ namespace Sava3._0.ViewModel
                                   PassportNum = e.PassportNum,
                                   SubjectName = e.Subject.Name,
                                   Address = e.Address,
-                                  Project = GetProjName(e.Id)
+                                  Project = context.ProjectEmployees.FirstOrDefault(pe => pe.Employee.Id == e.Id)  == null ? "" : context.ProjectEmployees.FirstOrDefault(pe => pe.Employee.Id == e.Id).Project.Name
                               };
-
-                    return new ObservableCollection<SelectedEmployee>(set);
+                    var res = new ObservableCollection<SelectedEmployee>(set);
+                    return res;
                 }
-            }
-        }
-
-        private string GetProjName(int empId)
-        {
-            using (var context = new DBContext())
-            {
-                var emp = context.ProjectEmployees.FirstOrDefault(pe => pe.Employee.Id == empId);
-                if (emp == null)
-                {
-                    return "";
-                }
-                return emp.Project.Name;
             }
         }
 
