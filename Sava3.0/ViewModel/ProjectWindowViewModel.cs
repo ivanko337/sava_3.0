@@ -62,11 +62,6 @@ namespace Sava3._0.ViewModel
                         //res.Add(context.ProjectEmployees.AsNoTracking().FirstOrDefault(pe => pe.Id == item.Id).Employee);
                     }
 
-                    //var query = from pe in Project.ProjectEmployees
-                    //            where pe.Employee.Position.Salary == pe.Employee.Position.Salary
-                    //            select pe.Employee;
-
-                    //var gg = new ObservableCollection<Employee>(query);
                     return res;
                 }
             }
@@ -89,11 +84,14 @@ namespace Sava3._0.ViewModel
 
                     decimal res = 0;
 
-                    foreach (var projEmployee in Project.ProjectEmployees)
+                    foreach (var employee in ProjectEmployees)
                     {
-                        Employee employee = projEmployee.Employee;
-                        decimal daySalary = employee.Position.Salary / 30;
-                        res += projLen * daySalary;
+                        using (var context = new DBContext())
+                        {
+                            decimal salary = context.Positions.FirstOrDefault(p => p.Id == employee.PositionId).Salary;
+                            decimal daySalary = salary / 30;
+                            res += projLen * daySalary;
+                        }
                     }
 
                     var factor = Convert.ToDecimal(Math.Pow(10, 2));
