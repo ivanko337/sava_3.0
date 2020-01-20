@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Sava3._0.View;
+using System.Windows.Forms;
 
 namespace Sava3._0.ViewModel
 {
@@ -46,16 +47,27 @@ namespace Sava3._0.ViewModel
             {
                 return new Command((obj) =>
                 {
-                    File.Create("%HOMEPATH%\\EmployeesReport.xlsx");
+                    OpenFileDialog dialog = new OpenFileDialog();
+                    dialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    dialog.RestoreDirectory = true;
+                    string path = "";
+
+                    if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        path = dialog.FileName;
+                    }
+                    else
+                    {
+                        return;
+                    }
 
                     ExcelService service = new ExcelService();
 
                     try
                     {
-                        service.CreateEmployeesReport(Employees, "%HOMEPATH%\\EmployeesReport.xlsx");
+                        service.CreateEmployeesReport(Employees, path);
 
                         System.Windows.MessageBox.Show("All done");
-                        System.Windows.MessageBox.Show("Report save in home directory");
                     }
                     catch (Exception ex)
                     {

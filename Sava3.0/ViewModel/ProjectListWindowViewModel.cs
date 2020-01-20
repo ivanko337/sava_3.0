@@ -1,10 +1,13 @@
 ﻿using Sava3._0.Infrastructure.Commands;
+using Sava3._0.Infrastructure.Services;
+using Sava3._0.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace Sava3._0.ViewModel
@@ -53,7 +56,59 @@ namespace Sava3._0.ViewModel
             {
                 return new Command((obj) =>
                 {
+                    OpenFileDialog dialog = new OpenFileDialog();
+                    dialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    dialog.RestoreDirectory = true;
+                    string path = "";
 
+                    if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        path = dialog.FileName;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    ExcelService service = new ExcelService();
+
+                    try
+                    {
+                        service.CreateProjectsReport(Projects, path);
+
+                        System.Windows.MessageBox.Show("All done");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.Message);
+                    }
+                });
+            }
+        }
+
+        public ICommand OpenEmployeesListCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    EmployeesListWindow wnd = new EmployeesListWindow();
+                    wnd.ShowDialog();
+                });
+            }
+        }
+
+        public ICommand CreateProjectCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    ProjectWindow wnd = new ProjectWindow();
+                    if (wnd.ShowDialog().Value)
+                    {
+                        OnProperyChanged(nameof(Projects));
+                    }
                 });
             }
         }

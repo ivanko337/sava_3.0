@@ -92,14 +92,14 @@ namespace Sava3._0.Infrastructure.Services
             int index = 2;
             foreach (var employee in employees)
             {
-                //workSheet.Cells[index, 1] = employee.id.ToString();
-                //workSheet.Cells[index, 2] = employee.name;
-                //workSheet.Cells[index, 3] = employee.surname;
-                //workSheet.Cells[index, 4] = employee.positionName;
-                //workSheet.Cells[index, 5] = employee.salary.ToString();
-                //workSheet.Cells[index, 6] = employee.address;
-                //workSheet.Cells[index, 7] = employee.proj_name;
-                //workSheet.Cells[index, 8] = employee.group_name;
+                workSheet.Cells[index, 1] = employee.Id.ToString();
+                workSheet.Cells[index, 2] = employee.Name;
+                workSheet.Cells[index, 3] = employee.Surname;
+                workSheet.Cells[index, 4] = employee.Salary.ToString();
+                workSheet.Cells[index, 5] = employee.Position;
+                workSheet.Cells[index, 6] = employee.PassportNum;
+                workSheet.Cells[index, 7] = employee.SubjectName;
+                workSheet.Cells[index, 8] = employee.Address;
 
                 ++index;
             }

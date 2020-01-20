@@ -28,7 +28,9 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Content="Отчёт по проектам" FontSize="15" Margin="5" Padding="5" Command="{Binding CreateReportCommand}" CommandParameter="{Binding ElementName=form}" />
+            <Button Content="Отчёт по проектам" FontSize="15" Margin="5" Padding="5" Command="{Binding CreateReportCommand}" />
+            <Button Content="Сотрудники" FontSize="15" Margin="5" Padding="5" Command="{Binding OpenEmployeesListCommand}" />
+            <Button Content="Создать проект" FontSize="15" Margin="5" Padding="5" Command="{Binding CreateProjectCommand}" />
         </StackPanel>
     </Grid>
 </Window>
