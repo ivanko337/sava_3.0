@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Sava3._0.ViewModel"
         mc:Ignorable="d"
-        Title="SelectEmplyeeWindow" Height="450" Width="830">
+        Title="SelectEmplyeeWindow" Height="450" Width="840">
     <Window.DataContext>
         <viewModel:SelectEmployeeWindowViewModel />
     </Window.DataContext>
@@ -20,8 +20,8 @@
             <TextBox Text="{Binding SalaryMore, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="15" Width="70" Padding="5" />
             <Label Content="Зп мельше" Margin="3"  />
             <TextBox Text="{Binding SalaryLess, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="15" Width="70" Padding="5" />
-            <Label Content="Специолизация:" Margin="3"  />
-            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Width="130" ItemsSource="{Binding Subjects}" DisplayMemberPath="Name" SelectedValue="{Binding Platform}" />
+            <!--<Label Content="Должность:" Margin="3"  />
+            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Width="130" ItemsSource="{Binding Positions}" DisplayMemberPath="Name" SelectedValue="{Binding Platform}" />-->
             
         </StackPanel>
         <ListView ItemsSource="{Binding Employees}" Grid.Row="1">
@@ -30,7 +30,7 @@
                     <GridViewColumn Header="Имя" Width="200" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Фамилия" Width="200" DisplayMemberBinding="{Binding Surname}" />
                     <GridViewColumn Header="Зарплата" Width="200" DisplayMemberBinding="{Binding Salary}" />
-                    <GridViewColumn Header="Специолизация" Width="200" DisplayMemberBinding="{Binding Subject}" />
+                    <GridViewColumn Header="Должность" Width="200" DisplayMemberBinding="{Binding Position}" />
                 </GridView>
             </ListView.View>
         </ListView>

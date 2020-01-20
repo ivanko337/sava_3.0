@@ -14,8 +14,8 @@ namespace Sava3._0.ViewModel
         public string Name { get; set; }
         public string Surname { get; set; }
         public decimal Salary { get; set; }
-        public int SubjectId { get; set; }
-        public string Subject { get; set; }
+        public int PositionId { get; set; }
+        public string Position { get; set; }
     }
 
     public class SelectEmployeeWindowViewModel : ViewModelBase
@@ -46,19 +46,6 @@ namespace Sava3._0.ViewModel
             }
         }
 
-        private Subject subject;
-        public Subject Subject
-        {
-            get => subject;
-            set
-            {
-                subject = value;
-
-                OnProperyChanged(nameof(Subject));
-                OnProperyChanged(nameof(Employees));
-            }
-        }
-
         public ObservableCollection<SelectedEmployee> Employees
         {
             get
@@ -72,8 +59,8 @@ namespace Sava3._0.ViewModel
                                   Name = e.Name,
                                   Surname = e.Surname,
                                   Salary = e.Position.Salary,
-                                  Subject = e.Subject.Name,
-                                  SubjectId = e.SubjectId
+                                  Position = e.Position.Name,
+                                  PositionId = e.Position.Id
                               };
 
                     if (SalaryLess > 0)
@@ -84,23 +71,8 @@ namespace Sava3._0.ViewModel
                     {
                         set = set.Where(e => e.Salary > SalaryMore);
                     }
-                    if (Subject != null)
-                    {
-                        set = set.Where(e => e.SubjectId == Subject.Id);
-                    }
 
                     return new ObservableCollection<SelectedEmployee>(set);
-                }
-            }
-        }
-
-        public ObservableCollection<Subject> Subjects
-        {
-            get
-            {
-                using (var context = new DBContext())
-                {
-                    return new ObservableCollection<Subject>(context.Subjects);
                 }
             }
         }
