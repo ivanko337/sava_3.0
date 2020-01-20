@@ -14,13 +14,13 @@ namespace Sava3._0
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            using (var context = new DBContext())
-            {
-                EmployeeWindow wnd = new EmployeeWindow();
-                wnd.ShowDialog();
-            }
-        }
+        //public App()
+        //{
+        //    using (var context = new DBContext())
+        //    {
+        //        EmployeeWindow wnd = new EmployeeWindow();
+        //        wnd.ShowDialog();
+        //    }
+        //}
     }
 }

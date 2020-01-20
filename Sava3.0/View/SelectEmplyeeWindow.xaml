@@ -21,7 +21,7 @@
             <Label Content="Зп мельше" Margin="3"  />
             <TextBox Text="{Binding SalaryLess, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="15" Width="70" Padding="5" />
             <Label Content="Специолизация:" Margin="3"  />
-            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Width="130" ItemsSource="{Binding Platforms}" DisplayMemberPath="Name" SelectedValue="{Binding Platform}" />
+            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Width="130" ItemsSource="{Binding Subjects}" DisplayMemberPath="Name" SelectedValue="{Binding Platform}" />
             
         </StackPanel>
         <ListView ItemsSource="{Binding Employees}" Grid.Row="1">
@@ -30,7 +30,7 @@
                     <GridViewColumn Header="Имя" Width="200" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Фамилия" Width="200" DisplayMemberBinding="{Binding Surname}" />
                     <GridViewColumn Header="Зарплата" Width="200" DisplayMemberBinding="{Binding Salary}" />
-                    <GridViewColumn Header="Специолизация" Width="200" DisplayMemberBinding="{Binding Subject.Name}" />
+                    <GridViewColumn Header="Специолизация" Width="200" DisplayMemberBinding="{Binding Subject}" />
                 </GridView>
             </ListView.View>
         </ListView>
