@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Sava3._0.Infrastructure.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Sava3._0.ViewModel
 {
@@ -30,11 +32,29 @@ namespace Sava3._0.ViewModel
                     var query = from prj in context.Projects
                                 select new SelectedProject
                                 {
-
+                                    Id = prj.Id,
+                                    CustomerName = prj.Customer.Name,
+                                    EndDate = prj.EndDate.ToString(),
+                                    PlatformName = prj.Platform.Name,
+                                    ProjName = prj.Name,
+                                    StartDate = prj.StartDate.ToString(),
+                                    TaskDescription = prj.TaskDescription,
+                                    TypeName = prj.ProjectType.Name
                                 };
-
-                    //return new ObservableCollection<SelectedProject>(context.Projects);
+                    var gg = new ObservableCollection<SelectedProject>(query);
+                    return gg;
                 }
+            }
+        }
+
+        public ICommand CreateReportCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+
+                });
             }
         }
     }

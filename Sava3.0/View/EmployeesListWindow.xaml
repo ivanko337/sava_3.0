@@ -1,0 +1,31 @@
+﻿<Window x:Class="Sava3._0.View.EmployeesListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sava3._0.View"
+        mc:Ignorable="d"
+        Title="EmployeesListWindow" Height="450" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding Employees}" Grid.Row="0" x:Name="listView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя" Width="200" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Фамилия" Width="200" DisplayMemberBinding="{Binding Surname}" />
+                    <GridViewColumn Header="Зарплата" Width="200" DisplayMemberBinding="{Binding Salary}" />
+                    <GridViewColumn Header="Должность" Width="200" DisplayMemberBinding="{Binding Position}" />
+                    <GridViewColumn Header="Проект" Width="200" DisplayMemberBinding="{Binding Project}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Отчёт по сотрудникам" FontSize="15" Margin="5" Padding="5" Command="{Binding CreateReportCommand}" />
+            <Button Content="Добавить сотрудника" FontSize="15" Margin="5" Padding="5" Command="{Binding CreateEmployeeCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>

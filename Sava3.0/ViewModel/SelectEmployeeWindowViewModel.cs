@@ -15,6 +15,10 @@ namespace Sava3._0.ViewModel
         public decimal Salary { get; set; }
         public int PositionId { get; set; }
         public string Position { get; set; }
+        public string PassportNum { get; set; }
+        public string SubjectName { get; set; }
+        public string Address { get; set; }
+        public string Project { get; set; }
     }
 
     public class SelectEmployeeWindowViewModel : ViewModelBase
@@ -59,7 +63,10 @@ namespace Sava3._0.ViewModel
                                   Surname = e.Surname,
                                   Salary = e.Position.Salary,
                                   Position = e.Position.Name,
-                                  PositionId = e.Position.Id
+                                  PositionId = e.Position.Id,
+                                  PassportNum = e.PassportNum,
+                                  SubjectName = e.Subject.Name,
+                                  Address = e.Address
                               };
 
                     if (SalaryLess > 0)

@@ -17,15 +17,18 @@
         <ListView Grid.Row="0" ItemsSource="{Binding Projects}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название проекта" DisplayMemberBinding="{Binding Name}" Width="180" />
-                    <GridViewColumn Header="Платформа" DisplayMemberBinding="{Binding Platform.Name}" Width="150" />
-                    <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding ProjectType.Name}" Width="150" />
-                    <GridViewColumn Header="Заказчик" DisplayMemberBinding="{Binding Customer.Name}" Width="150" />
+                    <GridViewColumn Header="Название проекта" DisplayMemberBinding="{Binding ProjName}" Width="180" />
+                    <GridViewColumn Header="Платформа" DisplayMemberBinding="{Binding PlatformName}" Width="150" />
+                    <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding TypeName}" Width="150" />
+                    <GridViewColumn Header="Заказчик" DisplayMemberBinding="{Binding CustomerName}" Width="150" />
                     <GridViewColumn Header="Пояснение задания" DisplayMemberBinding="{Binding TaskDescription}" Width="150" />
                     <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding StartDate}" Width="150" />
                     <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding EndDate}" Width="150" />
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="Отчёт по проектам" FontSize="15" Margin="5" Padding="5" Command="{Binding CreateReportCommand}" CommandParameter="{Binding ElementName=form}" />
+        </StackPanel>
     </Grid>
 </Window>
