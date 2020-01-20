@@ -1,0 +1,78 @@
+﻿<Window x:Class="Sava3._0.View.ProjectWindow"
+        x:Name="form"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sava3._0.View"
+        mc:Ignorable="d"
+        Title="ProjectWindow" Height="650" Width="800">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /> <!--0-->
+            <RowDefinition Height="Auto" /> <!--1-->
+            <RowDefinition Height="Auto" /> <!--2-->
+            <RowDefinition Height="Auto" /> <!--3-->
+            <RowDefinition Height="Auto" /> <!--4-->
+            <RowDefinition Height="Auto" /> <!--5-->
+            <RowDefinition Height="*" />    <!--6-->
+            <RowDefinition Height="*" /> <!--7-->
+            <RowDefinition Height="Auto" /> <!--8-->
+            <RowDefinition Height="Auto" /> <!--9-->
+            <RowDefinition Height="Auto" /> <!--10-->
+            <RowDefinition Height="Auto" /> <!--11-->
+            <RowDefinition Height="Auto" /> <!--12-->
+            <RowDefinition Height="Auto" /> <!--13-->
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Название:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Project.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Margin="5" Padding="5" />
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Платформа:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" ItemsSource="{Binding Platforms}" DisplayMemberPath="Name" SelectedValue="{Binding Project.Platform}" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Тип проекта:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="5" ItemsSource="{Binding ProjectTypes}" DisplayMemberPath="Name" SelectedValue="{Binding Project.ProjectType}" />
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Заказчик:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="5" ItemsSource="{Binding Customers}" DisplayMemberPath="Name" SelectedValue="{Binding Project.Customer}" />
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Дата начала:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <DatePicker Grid.Row="4" Grid.Column="1" Margin="5" FontSize="15" Padding="5" SelectedDate="{Binding Project.StartDate}" />
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Дата конца:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <DatePicker Grid.Row="5" Grid.Column="1" Margin="5" FontSize="15" Padding="5" SelectedDate="{Binding Project.EndDate}" />
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Пояснение проекта:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Project.TaskDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Margin="5" Padding="5" />
+
+        <Label Grid.Row="7" Grid.Column="0" Content="Сотрудники:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <Grid Grid.Row="7" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" Margin="5" ItemsSource="{Binding ProjectEmployees}" x:Name="employeesListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя" Width="250" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Surname}" Header="Фамилия" Width="250" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Button Content="+" Command="{Binding AddEmployeeCommand}" FontSize="15" Padding="3" Margin="5" />
+                <Button Content="-" Command="{Binding RemoveEmployeeCommand}" CommandParameter="{Binding ElementName=employeesListView, Path=SelectedItem}" FontSize="15" Padding="3" Margin="5" />
+            </StackPanel>
+        </Grid>
+        
+        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Content="Сохранить" FontSize="15" Margin="5" Padding="5" Command="{Binding SaveProjectCommand}" CommandParameter="{Binding ElementName=form}" />
+        <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Content="Добавить новую платформу" FontSize="13" Margin="5" Padding="5" Command="{Binding CreatePlatformCommand}" />
+        <Button Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Content="Добавить нового заказчика" FontSize="13" Margin="5" Padding="5" Command="{Binding CreateCustomerCommand}" />
+        <Button Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" Content="Расчёт стоимости" FontSize="13" Margin="5" Padding="5" Command="{Binding CalcCostCommand}" />
+    </Grid>
+</Window>

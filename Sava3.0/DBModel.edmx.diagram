@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50065dbd57c14a90afa5bb05486f8742" Name="Diagram1">
+        <EntityTypeShape EntityType="SKursachModel.Customer" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.Employee" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.Platform" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.Position" Width="1.5" PointX="10.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.ProjectEmployee" Width="1.75" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.Project" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.ProjectType" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SKursachModel.Subject" Width="1.5" PointX="5.375" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="SKursachModel.FK__Projects__custom__153B1FDF" ManuallyRouted="false" />
+        <AssociationConnector Association="SKursachModel.FK__Employees__posit__18178C8A" ManuallyRouted="false" />
+        <AssociationConnector Association="SKursachModel.FK__ProjectEm__emplo__1BE81D6E" ManuallyRouted="false" />
+        <AssociationConnector Association="SKursachModel.FK__Projects__platfo__1352D76D" ManuallyRouted="false" />
+        <AssociationConnector Association="SKursachModel.FK__ProjectEm__proj___1AF3F935" ManuallyRouted="false" />
+        <AssociationConnector Association="SKursachModel.FK__Projects__type_i__1446FBA6" ManuallyRouted="false" />
+        <AssociationConnector Association="SKursachModel.FK__Employees__subje__2E06CDA9" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
