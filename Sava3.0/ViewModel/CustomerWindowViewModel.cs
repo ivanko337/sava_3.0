@@ -1,9 +1,11 @@
-﻿using Sava3._0.Infrastructure.Commands;
+﻿using Sava3._0.Infrastructure;
+using Sava3._0.Infrastructure.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Sava3._0.ViewModel
@@ -20,9 +22,17 @@ namespace Sava3._0.ViewModel
             }
         }
 
+        public CustomerWindowViewModel()
+        {
+            Customer = new Customer();
+        }
+
         private void CreateCustomer(object parameter)
         {
-
+            using (var context = new DBContext())
+            {
+                DBService.AddNewEntity(parameter as Window, Customer, context, context.Customers);
+            }
         }
 
         private bool CanCreateCustomer(object parameter)

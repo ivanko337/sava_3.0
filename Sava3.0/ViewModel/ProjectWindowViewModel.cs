@@ -165,7 +165,26 @@ namespace Sava3._0.ViewModel
             {
                 return new Command((obj) =>
                 {
-                    
+                    CustomerWindow wnd = new CustomerWindow();
+                    if (wnd.ShowDialog().Value)
+                    {
+                        OnProperyChanged(nameof(Customers));
+                    }
+                });
+            }
+        }
+
+        public ICommand CreateProjectTypeCommand
+        {
+            get
+            {
+                return new Command((obj) =>
+                {
+                    ProjectTypeWindow wnd = new ProjectTypeWindow();
+                    if (wnd.ShowDialog().Value)
+                    {
+                        OnProperyChanged(nameof(ProjectTypes));
+                    }
                 });
             }
         }
@@ -189,6 +208,11 @@ namespace Sava3._0.ViewModel
                 context.Entry(Project.Customer).State = System.Data.Entity.EntityState.Modified;
                 context.Entry(Project.Platform).State = System.Data.Entity.EntityState.Modified;
                 context.Entry(Project.ProjectType).State = System.Data.Entity.EntityState.Modified;
+
+                //foreach (var item in Project.ProjectEmployees)
+                //{
+                //    context.Entry(item.Employee).State = System.Data.Entity.EntityState.Modified;
+                //}
 
                 DBService.AddNewEntity(param as Window, Project, context, context.Projects);
             }

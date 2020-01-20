@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Sava3._0.ViewModel"
         mc:Ignorable="d"
-        Title="ProjectWindow" Height="650" Width="800">
+        Title="ProjectWindow" Height="700" Width="800">
     <Window.DataContext>
         <viewModel:ProjectWindowViewModel />
     </Window.DataContext>
@@ -30,6 +30,7 @@
             <RowDefinition Height="Auto" /> <!--11-->
             <RowDefinition Height="Auto" /> <!--12-->
             <RowDefinition Height="Auto" /> <!--13-->
+            <RowDefinition Height="Auto" /> <!--14-->
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Название:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
@@ -76,6 +77,7 @@
         <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Content="Сохранить" FontSize="15" Margin="5" Padding="5" Command="{Binding SaveProjectCommand}" CommandParameter="{Binding ElementName=form}" />
         <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Content="Добавить новую платформу" FontSize="13" Margin="5" Padding="5" Command="{Binding CreatePlatformCommand}" />
         <Button Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Content="Добавить нового заказчика" FontSize="13" Margin="5" Padding="5" Command="{Binding CreateCustomerCommand}" />
-        <Button Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" Content="Расчёт стоимости" FontSize="13" Margin="5" Padding="5" Command="{Binding CalcCostCommand}" />
+        <Button Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" Content="Добавить новый тип проекта" FontSize="13" Margin="5" Padding="5" Command="{Binding CreateProjectTypeCommand}" />
+        <Button Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2" Content="Расчёт стоимости" FontSize="13" Margin="5" Padding="5" Command="{Binding CalcCostCommand}" />
     </Grid>
 </Window>

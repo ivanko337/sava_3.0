@@ -51,7 +51,7 @@ namespace Sava3._0.ViewModel
             {
                 using (var context = new DBContext())
                 {
-                    var set = from e in context.Employees
+                    var set = from e in context.Employees.AsNoTracking()
                               select new SelectedEmployee
                               {
                                   Id = e.Id,

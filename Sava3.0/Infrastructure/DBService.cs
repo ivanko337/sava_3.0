@@ -40,7 +40,8 @@ namespace Sava3._0.Infrastructure
             {
                 MessageBox.Show(ex.Message);
 
-                wnd.DialogResult = false;
+                //wnd.DialogResult = false;
+                throw;
             }
         }
     }
