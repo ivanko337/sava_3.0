@@ -55,12 +55,19 @@ namespace Sava3._0.ViewModel
             {
                 using (var context = new DBContext())
                 {
-                    var query = from pe in Project.ProjectEmployees
-                                where pe.Employee.Position.Salary == pe.Employee.Position.Salary
-                                select pe.Employee;
+                    var res = new ObservableCollection<Employee>();
+                    foreach (var item in Project.ProjectEmployees)
+                    {
+                        res.Add(item.Employee);
+                        //res.Add(context.ProjectEmployees.AsNoTracking().FirstOrDefault(pe => pe.Id == item.Id).Employee);
+                    }
 
-                    var gg = new ObservableCollection<Employee>(query);
-                    return gg;
+                    //var query = from pe in Project.ProjectEmployees
+                    //            where pe.Employee.Position.Salary == pe.Employee.Position.Salary
+                    //            select pe.Employee;
+
+                    //var gg = new ObservableCollection<Employee>(query);
+                    return res;
                 }
             }
         }
@@ -108,14 +115,9 @@ namespace Sava3._0.ViewModel
                     {
                         ProjectEmployee pe = new ProjectEmployee();
 
-                        //context.Entry(pe.Employee).State = System.Data.Entity.EntityState.Modified;
-                        //context.Employees.Attach(wnd.SelectedEmployee);
-
                         pe.Employee = wnd.SelectedEmployee;
-
+                        pe.Project = this.Project;
                         Project.ProjectEmployees.Add(pe);
-                        //context.Entry(pe).State = System.Data.Entity.EntityState.Added;
-
 
                         OnProperyChanged(nameof(Project));
                         OnProperyChanged(nameof(ProjectEmployees));
