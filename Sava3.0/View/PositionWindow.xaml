@@ -17,10 +17,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Название платформы:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <Label Grid.Row="0" Grid.Column="0" Content="Название должности:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Position.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Margin="5" Padding="5" />
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Название платформы:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Зарплата:" FontSize="15" HorizontalAlignment="Center" Margin="5" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Position.Salary, UpdateSourceTrigger=PropertyChanged}" FontSize="15" Margin="5" Padding="5" />
         
         <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Сохранить" FontSize="15" Margin="5" Padding="5" Command="{Binding SavePositionCommand}" CommandParameter="{Binding ElementName=form}" />
